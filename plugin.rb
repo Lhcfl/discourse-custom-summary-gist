@@ -21,8 +21,8 @@ module ::DiscourseCustomSummaryGist
 
       def fold(items, user, &on_partial_blk)
         begin
-          items.each do |item|
-            text = item[:text]
+          if strategy.target.is_a?(Topic)
+            text = strategy.target.first_post.raw
             return $1 if text =~ %r{\[summary\](.*?)\[/summary\]}m
           end
         rescue e
