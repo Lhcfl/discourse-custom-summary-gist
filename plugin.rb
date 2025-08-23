@@ -21,7 +21,7 @@ module ::DiscourseCustomSummaryGist
 
       def fold(items, user, &on_partial_blk)
         begin
-          if strategy.target.is_a?(Topic)
+          if strategy.target.is_a?(Topic) && strategy.type == AiSummary.summary_types[:gist]
             text = strategy.target.first_post.raw
             return $1 if text =~ %r{\[summary\](.*?)\[/summary\]}m
           end
