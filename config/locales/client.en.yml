@@ -3,7 +3,7 @@ en:
     admin:
       site_settings:
         categories:
-          TODO_plugin_name: "Plugin Name"
+          discourse_custom_summary_gist: "Discourse Custom Summary Gist"
   js:
-    discourse_plugin_name:
+    discourse_custom_summary_gist:
       placeholder: placeholder

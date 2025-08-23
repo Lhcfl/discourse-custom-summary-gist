@@ -1,4 +1,4 @@
-# **Plugin Name** Plugin
+# **Discourse Custom Summary Gist** Plugin
 
 **Plugin Summary**
 
