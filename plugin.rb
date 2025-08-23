@@ -14,18 +14,22 @@ module ::DiscourseCustomSummaryGist
   PLUGIN_NAME = "discourse-custom-summary-gist"
 
   module AiFoldMixin
-    alias_method :fold_old, :fold
+    extend ActiveSupport::Concern
 
-    def fold(items, user, &on_partial_blk)
-      begin
-        items.each do |item|
-          text = item[:text]
-          return $1 if text =~ %r{\[summary\](.*?)\[/summary\]}m
+    prepended do
+      alias_method :fold_old, :fold
+
+      def fold(items, user, &on_partial_blk)
+        begin
+          items.each do |item|
+            text = item[:text]
+            return $1 if text =~ %r{\[summary\](.*?)\[/summary\]}m
+          end
+        rescue e
+          Rails.logger.warn(e)
         end
-      rescue e
-        Rails.logger.warn(e)
+        fold_old(items, user, &on_partial_blk)
       end
-      fold_old(items, user, &on_partial_blk)
     end
   end
 end
