@@ -12,10 +12,26 @@ enabled_site_setting :discourse_custom_summary_gist_enabled
 
 module ::DiscourseCustomSummaryGist
   PLUGIN_NAME = "discourse-custom-summary-gist"
+
+  module AiFoldMixin
+    alias_method :fold_old, :fold
+
+    def fold(items, user, &on_partial_blk)
+      begin
+        items.each do |item|
+          text = item[:text]
+          return $1 if text =~ %r{\[summary\](.*?)\[/summary\]}m
+        end
+      rescue e
+        Rails.logger.warn(e)
+      end
+      fold_old(items, user, &on_partial_blk)
+    end
+  end
 end
 
 require_relative "lib/discourse_custom_summary_gist/engine"
 
 after_initialize do
-  # Code which should run after Rails has finished booting
+  ::DiscourseAi::Summarization::FoldContent.prepend ::DiscourseCustomSummaryGist::AiFoldMixin
 end
