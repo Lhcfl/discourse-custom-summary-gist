@@ -2,10 +2,10 @@
 
 # name: discourse-custom-summary-gist
 # about: Allow user to use [summary] block to customize the ai summary gists
-# meta_topic_id: TODO
+# meta_topic_id: 380060
 # version: 0.0.1
 # authors: Linca
-# url: TODO
+# url: https://meta.discourse.org/t/custom-summary-gist/380060
 # required_version: 2.7.0
 
 enabled_site_setting :discourse_custom_summary_gist_enabled
