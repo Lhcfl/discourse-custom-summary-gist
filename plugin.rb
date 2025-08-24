@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 # name: discourse-custom-summary-gist
-# about: TODO
+# about: Allow user to use [summary] block to customize the ai summary gists
 # meta_topic_id: TODO
 # version: 0.0.1
-# authors: Discourse
+# authors: Linca
 # url: TODO
 # required_version: 2.7.0
 
